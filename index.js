@@ -2,11 +2,12 @@ import express from 'express'
 import { createServer } from 'node:http'
 import { WebSocketServer } from 'ws'
 import { io } from 'socket.io-client'
+import { socketServer } from './config.js'
 
 const app = express()
 const server = createServer(app)
 const webSocketServer = new WebSocketServer({ server })
-const clientSocket = io('http://localhost:3001')
+const clientSocket = io(socketServer)
 
 app.get('/', (req, res) => {
     return res.send('Api working')
